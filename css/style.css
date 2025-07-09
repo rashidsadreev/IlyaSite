@@ -1,0 +1,601 @@
+/* Общее */
+@font-face {
+  font-family: 'Engry';
+  src: url('../fonts/engry.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Munson';
+  src: url('../fonts/1_Munson_Roman.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'KazukiReiwa';
+  src: url('../fonts/KazukiReiwaRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+a
+{
+  text-decoration: none;
+  color: white;
+}
+body{
+    font-family: 'Munson';
+    background-color:#B5913A;
+    color: #ffffff;
+}
+/* Index */
+.main
+{
+    display: flex;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+.main__content{
+    min-height: 100vh;
+    min-width: 65vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.main__title
+{
+    width: 384px;
+    font-size: 64px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 31px;
+
+}
+.main__text 
+{
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 104%;
+    font-family: 'KazukiReiwa';
+}
+.nav__list {
+  position: fixed;         /* Зафиксировано на экране */
+  right: 0;                /* Прижимаем к правому краю */
+  top: 0;                  /* Прижимаем к верху (или можно оставить по центру) */
+  
+  font-family: 'Engry';
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15vh;
+  min-height: 100vh;
+  list-style: none;
+  text-align: right;
+  margin: 0;               /* убираем внешний отступ, чтобы прилипло полностью */
+  padding: 0 40px;         /* внутренний отступ справа */
+  z-index: 1000;           /* если нужно поверх всего */
+}
+.nav__title
+{
+    font-size: 44px;
+
+}
+.nav__title:hover , .projects__link:hover
+{
+   color: #F2E09A;
+   cursor: pointer;
+}
+
+
+.background-blobs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 120vw;
+  height: 120vh;
+  display: flex;
+  z-index: -1;
+  transform: translate(-10vw, -10vh);
+  overflow: hidden;
+  pointer-events: none; /* чтобы не мешала кликам */
+}
+.background-blobs svg {
+  flex: 1 1 0;
+  height: 100%;
+  width: 100%;
+  preserveAspectRatio: none;
+}
+.left-blob
+{
+    margin-left:100px;
+    animation: up-down 10s ease-in-out infinite;
+    fill:#BF2D04;
+}
+.middle-blob
+{
+    margin: 0 100px 0 -290px;
+    transform: scale(1.2,1.1);
+    animation: float 12s ease-in-out infinite; 
+    fill:#BF2D04;
+}
+.right-blob
+{
+    transform: scale(2,1.3);
+    animation: down-up 9s ease-in-out infinite; 
+    fill:#BF2D04;
+}
+.left-blob-2
+{
+    transform: scale(3.3);
+    margin-left:120px;
+     margin-top:-50px;
+    animation: up-down-2 20s ease-in-out infinite;
+    fill:#BF2D04;
+}
+.right-blob-2
+{
+    transform: scale(1.0,1.3);
+    margin-right: -200px;
+    animation: down-up-2 29s ease-in-out infinite; 
+    fill:#BF2D04;
+}
+/* Contacts.html */
+
+.contacts__content
+{
+    min-height: 100vh;
+    min-width: 45vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 100px;
+}
+.contacts__text 
+{
+    font-size: 64px;
+}
+
+
+/* Projects.html */
+
+.projects__content
+{
+    min-height: 100vh;
+    min-width: 45vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-left: 100px;
+}
+.projects__block
+{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 30px;
+}
+.projects__title
+{
+  font-weight: 700;
+  font-size: 60px;
+}
+.projects__name
+{
+    font-family: 'KazukiReiwa';
+    font-size: 40px;
+}
+.projects__button
+{
+   background-image: url('../img/svg/border1.png'); /* рисованная рамка в SVG */
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  padding: 80px 140px;
+  color: white;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  /* Чтобы рамка не обрезалась */
+  overflow: visible;
+  box-sizing: content-box;
+  animation: borderCycle 3s infinite;
+  transition: 1s;
+
+}
+.projects__button:hover
+{
+    padding: 180px 100px;
+
+  animation: none;
+  background-image: url('../img/svg/border-active.svg');  
+}
+
+.projects__list {
+  display: flex;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  visibility: hidden;
+  transition: all 0.5s ease;
+  flex-direction: column;
+  gap: 30px;
+  list-style: none;
+  padding: 0;
+  text-align: right;
+}
+.projects__list.projects-active {
+  max-height: 1000px; /* достаточно большое число */
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Страница проекта.html */
+
+.btn-return
+{
+  padding: 48px 0 0 48px;
+  transform: scale(1);
+  transition: 1s;
+  cursor: pointer;
+}
+.btn-return:hover
+{
+   transform: scale(1.1);
+}
+.project
+{
+    min-height: 80vh;
+    min-width: 45vw;
+    max-width: 45vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 100px;
+    font-family: 'KazukiReiwa';
+}
+.project__title 
+{
+  font-family: 'Munson';
+  font-size: 36px;
+}
+.project__type, .project__director{
+ color: #6A1E09;
+ margin: 0;
+ font-weight: 400;
+}
+
+.playlist {
+  position: fixed;         /* Зафиксировано на экране */
+  right: 0;                /* Прижимаем к правому краю */
+  top: 0;                  /* Прижимаем к верху (или можно оставить по центру) */
+  font-size: 24px;
+  font-family: 'KazukiReiwa';
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+  min-height: 100vh;
+  text-align: left;
+  margin: 0;               /* убираем внешний отступ, чтобы прилипло полностью */
+  padding: 0 40px;         /* внутренний отступ справа */
+  z-index: 1000;   
+}
+.playitem
+{
+   cursor: pointer; 
+}
+
+.playitem:hover
+{
+  color: #F2E09A;
+  cursor: pointer;
+}
+
+
+/*Плеер*/
+.player__title
+{
+  font-size: 36px;
+  text-align: right;
+  margin-left: auto;
+}
+.player {
+  min-width: 100vh;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #2e2e2e;
+  color: white;
+  font-family: sans-serif;
+  }
+
+  .controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  }
+
+  .controls button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  }
+  #playPauseBtn
+  {
+  background-image: url('../img/icon/play.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
+  background-position: center;
+  }
+  .progress {
+  width: 100%;
+  height: 6px;
+  background: #F2E09A;
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 10px 0;
+  }
+
+  .progress-filled {
+  height: 100%;
+  width: 0%;
+  background: #9a8e5d ;
+  transition: width 0.2s linear;
+  }
+
+  .volume {
+  width: 100px;
+  }
+  .time {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  opacity: 0.85;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.2s ease;
+  }
+  /* Общие стили */
+  .volume {
+  width: 100px;
+  appearance: none; /* убираем системный стиль */
+  background: transparent; /* прозрачный фон */
+  }
+
+  /* Стилизация "дорожки" (полосы) — для Chrome, Safari, Edge */
+  .volume::-webkit-slider-runnable-track {
+  height: 6px;
+  background: #F2E09A;
+  border-radius: 3px;
+  }
+
+  /* Стилизация "ползунка" — Chrome, Safari, Edge */
+  .volume::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  margin-top: -4px; /* чтобы был по центру трека */
+  border: 2px solid #F2E09A;
+  transition: background 0.2s;
+  }
+  .volume::-webkit-slider-thumb:hover {
+  background: #f6d333;
+  }
+
+  /* Firefox */
+  .volume::-moz-range-track {
+  height: 6px;
+  background: #F2E09A;
+  border-radius: 3px;
+  }
+  .volume::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #F2E09A;
+  cursor: pointer;
+  }
+
+
+/* Анимации  */
+
+/* Разные старты */
+.delay-0 {   animation: cycle1 3s infinite; }
+.delay-1 {   animation: cycle2 3s infinite; }
+.delay-2 {   animation: cycle3 3s infinite; }
+.delay-3 {   animation: cycle4 3s infinite; }
+
+/* Анимация фонового изображения */
+@keyframes cycle1 {
+  0%   { background-image: url('../img/svg/border1.png'); }
+  25%  { background-image: url('../img/svg/border2.png'); }
+  50%  { background-image: url('../img/svg/border3.png'); }
+  75%  { background-image: url('../img/svg/border4.png'); }
+  100% { background-image: url('../img/svg/border1.png'); }
+}
+
+@keyframes cycle2 {
+  0%   { background-image: url('../img/svg/border2.png'); }
+  25%  { background-image: url('../img/svg/border3.png'); }
+  50%  { background-image: url('../img/svg/border4.png'); }
+  75%  { background-image: url('../img/svg/border1.png'); }
+  100% { background-image: url('../img/svg/border2.png'); }
+}
+
+@keyframes cycle3 {
+  0%   { background-image: url('../img/svg/border3.png'); }
+  25%  { background-image: url('../img/svg/border4.png'); }
+  50%  { background-image: url('../img/svg/border1.png'); }
+  75%  { background-image: url('../img/svg/border2.png'); }
+  100% { background-image: url('../img/svg/border3.png'); }
+}
+
+@keyframes cycle4 {
+  0%   { background-image: url('../img/svg/border4.png'); }
+  25%  { background-image: url('../img/svg/border1.png'); }
+  50%  { background-image: url('../img/svg/border2.png'); }
+  75%  { background-image: url('../img/svg/border3.png'); }
+  100% { background-image: url('../img/svg/border4.png'); }
+}
+
+
+
+
+@keyframes up-down {
+  0%   { transform: translate(0px,-20px) scale(1.2); }
+  50% { transform: translate(-40px,100px) scale(1.1);;  }
+  100% {transform: translate(0px,-20px) scale(1.2);  }
+}
+@keyframes float {
+  0%   { transform: scale(1.2,1.1) translate(-50px, -30px); }
+  50% { transform: scale(1,1.1) translate(100px,30px); }
+  100% { transform: scale(1.2,1.1) translate(-50px,-30px); }
+}
+@keyframes down-up {
+  0%   { transform:scale(2,1.3)  translateY(100px); }
+  50% { transform:scale(1.7,1.3) translateY(-30px);  }
+  100% {transform:scale(2,1.3) translateY(100px);  }
+}
+
+@keyframes up-down-2 {
+  0%   { transform: translate(0px,-20px) scale(1.5); }
+  50% { transform: translate(-40px,100px) scale(1.1);;  }
+  100% {transform: translate(0px,-20px) scale(1.5);  }
+}
+@keyframes down-up-2 {
+  0%   { transform:scale(2,1.3)  translateY(100px); }
+  50% { transform:scale(2.7,1.3) translateY(-30px);  }
+  100% {transform:scale(2,1.3) translateY(100px);  }
+}
+
+/* ШРИФТЫ */
+
+body {
+  font-family: 'Munson';
+  background-color: #B5913A;
+  color: #ffffff;
+  font-size: clamp(14px, 1.2vw, 18px);
+}
+
+.main__title {
+  width: 100%;
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.main__text {
+  font-size: clamp(18px, 3vw, 28px);
+  font-weight: 400;
+  line-height: 1.2;
+  font-family: 'KazukiReiwa';
+  text-align: center;
+  padding: 0 10vw;
+}
+
+.nav__title {
+  font-size: clamp(24px, 4vw, 36px);
+}
+
+.contacts__text {
+  font-size: clamp(28px, 5vw, 48px);
+}
+
+.projects__title {
+  font-size: clamp(32px, 6vw, 48px);
+  font-weight: 700;
+}
+
+.projects__name {
+  font-family: 'KazukiReiwa';
+  font-size: clamp(20px, 4vw, 32px);
+}
+
+.projects__button {
+  font-size: clamp(14px, 2.5vw, 18px);
+  padding: clamp(40px, 10vw, 80px) clamp(50px, 8vw, 140px);
+}
+
+.projects__button:hover {
+  padding: clamp(60px, 12vw, 180px) clamp(30px, 6vw, 100px);
+}
+
+.project__title {
+  font-family: 'Munson';
+  font-size: clamp(24px, 4vw, 32px);
+}
+
+.project__type,
+.project__director {
+  font-size: clamp(14px, 2.5vw, 18px);
+}
+
+.playlist {
+  font-size: clamp(16px, 3vw, 24px);
+}
+
+.btn-return {
+  padding: 24px;
+  font-size: clamp(14px, 2vw, 18px);
+}
+
+.burger {
+  display: none;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2000;
+  background: none;
+  border: none;
+  font-size: 32px;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 1400px) {
+  .burger
+  {
+    display: block;
+  }
+  .nav__list,.playlist {
+    background-color: #6A1E09;
+    transform: translatex(100%);
+    transition: 1s;
+  }
+  .main__content{
+      min-width: 100vw;
+  }
+  .nav-active{
+      transform: translatex(0%);
+  }
+  .playlist-active{
+      transform: translatex(0%);
+  }
+  .projects__content
+  {
+    padding-left: 0;
+  }
+  .player__title
+  {
+    font-size: 20px;
+  }
+  .project
+  {
+    max-width: 100vw;
+    padding: 20px;
+  }
+}
